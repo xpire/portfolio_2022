@@ -9,14 +9,14 @@ import { Typography, Link, Container } from "@mui/material"
 import styled from "styled-components"
 import PropTypes from "prop-types"
 
-const PostTemplateStyles = styled.div`
+const BlogTemplateStyles = styled.div`
   .post__body {
     margin-top: 2.5rem;
     margin-bottom: 2.5rem;
   }
 `
 
-const PostTemplate = ({ data }) => {
+const BlogTemplate = ({ data }) => {
   const { title, date, author, image } = data.mdx.frontmatter
   const { body } = data.mdx
   const img = getImage(image.childImageSharp.gatsbyImageData)
@@ -33,11 +33,11 @@ const PostTemplate = ({ data }) => {
         </Typography>
         <Typography variant="h1">{title}</Typography>
         <Typography variant="h3">
-          <span>Project</span>
+          <span>Blog</span>
         </Typography>
 
         <GatsbyImage image={img} alt="Blog Post" />
-        <PostTemplateStyles>
+        <BlogTemplateStyles>
           <MDXThemeProvider>
             <MDXProvider
              components={MDXProviderComponents}
@@ -45,7 +45,7 @@ const PostTemplate = ({ data }) => {
               <MDXRenderer>{body}</MDXRenderer>
             </MDXProvider>
           </MDXThemeProvider>
-        </PostTemplateStyles>
+        </BlogTemplateStyles>
         <hr class="separator" />
 
         <hr class="separator separator__large" />
@@ -55,7 +55,7 @@ const PostTemplate = ({ data }) => {
 }
 
 export const query = graphql`
-  query getPost($slug: String!) {
+  query getBlog($slug: String!) {
     mdx(slug: { eq: $slug }) {
       frontmatter {
         title
@@ -73,9 +73,9 @@ export const query = graphql`
   }
 `
 
-export default PostTemplate
+export default BlogTemplate
 
-PostTemplate.propTypes = {
+BlogTemplate.propTypes = {
   title: PropTypes.string.isRequired,
   date: PropTypes.string,
   author: PropTypes.string,

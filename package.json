@@ -16,6 +16,9 @@
   "dependencies": {
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
+    "@mui/material": "^5.6.0",
+    "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest",
+    "@mui/styled-engine-sc": "^5.5.2",
     "babel-plugin-styled-components": "^1.13.2",
     "framer-motion": "^1.11.1",
     "gatsby": "^4.0.0",
@@ -30,19 +33,23 @@
     "gatsby-source-filesystem": "^4.0.0",
     "gatsby-transformer-sharp": "^4.0.0",
     "normalize.css": "^8.0.1",
+    "pollen-css": "^4.3.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-cookie-consent": "^6.3.0",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
     "react-intersection-observer": "^8.32.1",
-    "styled-components": "^5.3.1",
+    "styled-components": "^5.3.5",
     "typeface-heebo": "^1.1.13"
   },
   "devDependencies": {
     "@netlify/plugin-gatsby": "^1.0.3",
     "gatsby-plugin-netlify": "^4.0.0-next.0",
     "prettier": "^2.3.2"
+  },
+  "resolutions": {
+    "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
   },
   "repository": {
     "type": "git",
