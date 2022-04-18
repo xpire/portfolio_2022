@@ -56,12 +56,5 @@
   },
   "resolutions": {
     "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/bagseye/koop-blog"
-  },
-  "bugs": {
-    "url": "https://github.com/bagseye/koop-blog/issues"
   }
 }
