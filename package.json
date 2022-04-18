@@ -1,7 +1,7 @@
 {
-  "name": "koop-blog",
+  "name": "Justin Or's portfolio",
   "private": true,
-  "description": "A simple blog platform using GatsbyJS and MDX",
+  "description": "Justin Or's Portfolio built on GatsbyJS and MDX",
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
