@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkjust_in_awe=self.webpackChunkjust_in_awe||[]).push([[883],{429:function(e,t,n){n.r(t);var a=n(7294),u=n(1597);t.default=function(){return a.createElement(a.Fragment,null,a.createElement("h1",null,"This page has disappeared"),a.createElement(u.rU,{className:"btn",to:"/"},"Return Home"))}}}]);
+//# sourceMappingURL=component---src-pages-404-js-646fe05135b7659f8734.js.map
