@@ -22,6 +22,7 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-image`,
+    `@gvrs/gatsby-transformer-blurhash`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-netlify`,
@@ -45,6 +46,9 @@ module.exports = {
         gatsbyRemarkPlugins: [
           {
             resolve: `gatsby-remark-images`,
+          },
+          {
+            resolve: `gatsby-remark-highlight-code`,
           },
         ],
       },

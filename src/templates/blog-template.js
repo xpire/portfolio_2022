@@ -1,56 +1,55 @@
 import React from "react"
 import { Link as GatsbyLink, graphql } from "gatsby"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import BlurHashImage from "../components/style/BlurHashImage"
 import { MDXProvider } from "@mdx-js/react"
 import { MDXRenderer } from "gatsby-plugin-mdx"
-import { MDXThemeProvider, MDXProviderComponents } from "../components/style/MDXComponents"
-import {PageThemeProvider} from "../components/style/PageStyle"
-import { Typography, Link, Container } from "@mui/material"
-import styled from "styled-components"
+import {
+  MDXThemeProvider,
+  MDXProviderComponents,
+} from "../components/style/MDXComponents"
+import {
+  PageContainer,
+  Section,
+  CodePrefix,
+} from "../components/style/PageStyle"
+import { Typography } from "@mui/material"
 import PropTypes from "prop-types"
+import { defineCustomElements as deckDeckGoHighlightElement } from "@deckdeckgo/highlight-code/dist/loader"
 
-const BlogTemplateStyles = styled.div`
-  .post__body {
-    margin-top: 2.5rem;
-    margin-bottom: 2.5rem;
-  }
-`
-
-const BlogTemplate = ({ data }) => {
+const PostTemplate = ({ data }) => {
+  deckDeckGoHighlightElement()
   const { title, date, author, image } = data.mdx.frontmatter
   const { body } = data.mdx
-  const img = getImage(image.childImageSharp.gatsbyImageData)
-  console.log({date})
+  const img = image.childImageSharp.gatsbyImageData
+  console.log({ date })
   return (
-  <PageThemeProvider>
-    <Container maxWidth="lg">
-        <Link component={GatsbyLink} to="/">
-          Back to all posts
-        </Link>
-        <hr class="separator" />
+    <PageContainer>
+      <Section>
         <Typography variant="button">
           <span>{date}</span>
         </Typography>
-        <Typography variant="h1">{title}</Typography>
-        <Typography variant="h3">
-          <span>Blog</span>
+        <Typography variant="h4">
+          <code>
+            <CodePrefix>/blog</CodePrefix>
+          </code>
         </Typography>
-
-        <GatsbyImage image={img} alt="Blog Post" />
-        <BlogTemplateStyles>
-          <MDXThemeProvider>
-            <MDXProvider
-             components={MDXProviderComponents}
-             >
-              <MDXRenderer>{body}</MDXRenderer>
-            </MDXProvider>
-          </MDXThemeProvider>
-        </BlogTemplateStyles>
-        <hr class="separator" />
-
-        <hr class="separator separator__large" />
-    </Container>
-   </PageThemeProvider>
+        <Typography variant="h2" gutterBottom>
+          {title}
+        </Typography>
+        <Section>
+          <BlurHashImage
+            gatsbyImageData={img}
+            blurHash={image.childImageSharp.blurHash}
+            alt="Blog Post"
+          />
+        </Section>
+        <MDXThemeProvider>
+          <MDXProvider components={MDXProviderComponents}>
+            <MDXRenderer>{body}</MDXRenderer>
+          </MDXProvider>
+        </MDXThemeProvider>
+      </Section>
+    </PageContainer>
   )
 }
 
@@ -63,7 +62,15 @@ export const query = graphql`
         author
         image {
           childImageSharp {
-            gatsbyImageData(layout: FULL_WIDTH)
+            gatsbyImageData(
+              layout: FULL_WIDTH
+              placeholder: NONE
+              aspectRatio: 1.777
+            )
+            blurHash(componentX: 3, componentY: 4, width: 32) {
+              base64Image
+              hash
+            }
           }
         }
       }
@@ -73,9 +80,9 @@ export const query = graphql`
   }
 `
 
-export default BlogTemplate
+export default PostTemplate
 
-BlogTemplate.propTypes = {
+PostTemplate.propTypes = {
   title: PropTypes.string.isRequired,
   date: PropTypes.string,
   author: PropTypes.string,
