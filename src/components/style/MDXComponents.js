@@ -65,12 +65,10 @@ export const MDXProviderComponents = {
   h4: (props) => <Typography variant="h4" gutterBottom {...props} />,
   h5: (props) => <Typography variant="h5" gutterBottom {...props} />,
   h6: (props) => <Typography variant="h6" gutterBottom {...props} />,
-  p: (props) => (
-    <Typography variant="body1" paragraph gutterBottom {...props} />
-  ),
+  p: (props) => <Typography variant="body1" paragraph {...props} />,
   li: (props) => (
     <li>
-      <Typography variant="body1" paragraph gutterBottom {...props} />
+      <Typography variant="body1" paragraph {...props} />
     </li>
   ),
 }

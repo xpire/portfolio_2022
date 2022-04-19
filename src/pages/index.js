@@ -1,6 +1,6 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import { Grid, Typography } from "@mui/material"
+import { Grid, Typography, useTheme, useMediaQuery } from "@mui/material"
 import "pollen-css"
 import "katex/dist/katex.min.css"
 import Latex from "react-latex-next"
@@ -9,6 +9,7 @@ import {
   Section,
   PageContainer,
   StyledLink,
+  ExternalLink,
 } from "../components/style/PageStyle"
 import ListItem from "../components/list/ListItem"
 import MigurdiaImage from "../images/Migurdia"
@@ -63,6 +64,9 @@ const Index = () => {
     /\/blog\//.test(post.node.fileAbsolutePath)
   )
 
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"))
+
   return (
     <PageContainer>
       <Section>
@@ -103,15 +107,16 @@ const Index = () => {
             </Typography>
           </Grid>
         </Grid> */}
-        <Grid container spacing={6}>
+        <Grid container spacing={3}>
           <Grid
             item
             container
             spacing={6}
             direction="row"
             justifyContent="flex-start"
+            alignItems="center"
           >
-            <Grid item xs={8} sm={6}>
+            <Grid item xs={12} sm={6} order={{ xs: 2, sm: 1 }}>
               <Typography gutterBottom>
                 Through my internship at MLC and NAB, I went from 0 experience
                 in frontend development to being the frontend developer for my
@@ -120,35 +125,52 @@ const Index = () => {
                 TeamCity CI/CD pipelines.
               </Typography>
             </Grid>
-            <Grid item>
-              <StyledLink
-                gutterBottom
-                href="https://www.mlc.com.au"
-                target="_blank"
-                rel="noopener"
-              >
-                <MLCLogo />
-              </StyledLink>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              order={{ xs: 1, sm: 2 }}
+              container
+              direction="row"
+              justifyContent={isMobile ? "center" : "flex-start"}
+            >
+              <Grid item>
+                <StyledLink
+                  href="https://www.mlc.com.au"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <MLCLogo />
+                </StyledLink>
+              </Grid>
             </Grid>
           </Grid>
           <Grid
             item
             container
-            spacing={6}
+            spacing={3}
             direction="row"
             justifyContent="flex-end"
           >
-            <Grid item>
-              <StyledLink
-                gutterBottom
-                href="https://www.optiver.com"
-                target="_blank"
-                rel="noopener"
-              >
-                <OptiverLogo />
-              </StyledLink>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              container
+              direction="row-reverse"
+              justifyContent={isMobile ? "center" : "flex-start"}
+            >
+              <Grid item>
+                <StyledLink
+                  href="https://www.optiver.com"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <OptiverLogo />
+                </StyledLink>
+              </Grid>
             </Grid>
-            <Grid item xs={8} sm={6}>
+            <Grid item xs={12} sm={6}>
               <Typography variant="body1" gutterBottom>
                 I'm currently working as a Graduate Software Engineer at
                 Optiver. Coding C++ in a High Frequency Trading company has
@@ -228,36 +250,19 @@ const Index = () => {
           Feel free to reach out if you're looking for a developer, want to
           connect or have a question.
         </Typography>
-        <StyledLink
-          gutterBottom
-          href="mailto:me@justinor.dev"
-          target="_blank"
-          rel="noopener"
-        >
-          <Typography variant="h6" gutterBottom>
-            me@justinor.dev
-          </Typography>
-        </StyledLink>
-        <StyledLink
-          gutterBottom
-          href="https://github.com/xpire"
-          target="_blank"
-          rel="noopener"
-        >
-          <Typography variant="h6" gutterBottom>
-            github.com/xpire
-          </Typography>
-        </StyledLink>
-        <StyledLink
-          gutterBottom
+        <ExternalLink href="mailto:me@justinor.dev" variant="h6" gutterBottom>
+          me@justinor.dev
+        </ExternalLink>
+        <ExternalLink href="https://github.com/xpire" variant="h6" gutterBottom>
+          github.com/xpire
+        </ExternalLink>
+        <ExternalLink
           href="https://linkedin.com/in/justinor/"
-          target="_blank"
-          rel="noopener"
+          variant="h6"
+          gutterBottom
         >
-          <Typography variant="h6" gutterBottom>
-            linkedin.com/in/justinor/
-          </Typography>
-        </StyledLink>
+          linkedin.com/in/justinor/
+        </ExternalLink>
       </Section>
     </PageContainer>
   )

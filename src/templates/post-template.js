@@ -12,7 +12,7 @@ import {
   PageContainer,
   Section,
   CodePrefix,
-  StyledLink,
+  ExternalLink,
 } from "../components/style/PageStyle"
 import { Typography, Grid, styled as muiStyled } from "@mui/material"
 import PropTypes from "prop-types"
@@ -24,6 +24,10 @@ const ProjectOverview = styled.div`
 
 const ProjectSubtext = muiStyled(Typography)`
 color: var(--color-grey-500);
+`
+
+const ProjectTitleGrid = muiStyled(Grid)`
+  margin-bottom: var(--size-3);
 `
 
 const PostTemplate = ({ data }) => {
@@ -54,14 +58,12 @@ const PostTemplate = ({ data }) => {
           />
         </Section>
         <ProjectOverview>
-          <Grid container>
+          <Grid container spacing={2}>
             {type && (
               <Grid item xs={6} sm={2} container direction="column" spacing={1}>
-                <Grid item>
-                  <Typography variant="overline" gutterBottom>
-                    Type
-                  </Typography>
-                </Grid>
+                <ProjectTitleGrid item>
+                  <Typography variant="overline">Type</Typography>
+                </ProjectTitleGrid>
                 <Grid item>
                   <ProjectSubtext variant="h6">{type}</ProjectSubtext>
                 </Grid>
@@ -69,11 +71,9 @@ const PostTemplate = ({ data }) => {
             )}
             {stack && (
               <Grid item xs={6} sm={2} container direction="column" spacing={1}>
-                <Grid item>
-                  <Typography variant="overline" gutterBottom>
-                    Stack
-                  </Typography>
-                </Grid>
+                <ProjectTitleGrid item>
+                  <Typography variant="overline">Stack</Typography>
+                </ProjectTitleGrid>
                 {stack.map((s) => (
                   <Grid item>
                     <ProjectSubtext variant="h6">{s}</ProjectSubtext>
@@ -83,29 +83,25 @@ const PostTemplate = ({ data }) => {
             )}
             {code && (
               <Grid item xs={6} sm={2} container direction="column" spacing={1}>
+                <ProjectTitleGrid item>
+                  <Typography variant="overline">Code</Typography>
+                </ProjectTitleGrid>
                 <Grid item>
-                  <Typography variant="overline" gutterBottom>
-                    Code
-                  </Typography>
-                </Grid>
-                <Grid item>
-                  <StyledLink href={code}>
-                    <ProjectSubtext variant="h6">Repository</ProjectSubtext>
-                  </StyledLink>
+                  <ExternalLink href={code} variant="h6">
+                    Repository
+                  </ExternalLink>
                 </Grid>
               </Grid>
             )}
             {live && (
               <Grid item xs={6} sm={2} container direction="column" spacing={1}>
+                <ProjectTitleGrid item>
+                  <Typography variant="overline">Live</Typography>
+                </ProjectTitleGrid>
                 <Grid item>
-                  <Typography variant="overline" gutterBottom>
-                    Live
-                  </Typography>
-                </Grid>
-                <Grid item>
-                  <StyledLink href={live}>
-                    <ProjectSubtext variant="h6">View Site</ProjectSubtext>
-                  </StyledLink>
+                  <ExternalLink href={live} variant="h6">
+                    View Site
+                  </ExternalLink>
                 </Grid>
               </Grid>
             )}

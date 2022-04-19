@@ -3,8 +3,8 @@ import { motion } from "framer-motion"
 
 const MLCImage = () => (
   <motion.svg
-    width="100"
-    height="calc(100*271.18/414.47)"
+    width="90"
+    height="100%" //"calc(90*271.18/414.47)"
     viewBox="0 0 414.47 271.18"
     initial={{
       fillOpacity: 0,

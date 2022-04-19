@@ -31,8 +31,13 @@ const ListItem = ({ gatsbyImageData, blurHash, slug, title, excerpt }) => {
           <BlurHashImage
             gatsbyImageData={gatsbyImageData}
             blurHash={blurHash}
+            imgStyle={{
+              borderRadius: "inherit",
+            }}
             style={{
               borderRadius: "var(--radius-xl)",
+              position: "relative",
+              zIndex: 0, // fix ios issue: https://stackoverflow.com/questions/66835241/gatsby-image-plugin-not-displaying-properly-on-ios-devices
             }}
             loading="eager"
             alt={`${title} image`}

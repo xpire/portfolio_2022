@@ -4,8 +4,8 @@ import { motion } from "framer-motion"
 const OptiverLogo = () => (
   <motion.svg
     viewBox={"0 0 50 50"}
-    width="100px"
-    height="100%"
+    width="90px"
+    height="90px"
     initial={{
       fillOpacity: 0,
     }}
