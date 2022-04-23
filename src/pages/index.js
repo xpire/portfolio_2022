@@ -1,6 +1,11 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import { Grid, Typography, useTheme, useMediaQuery } from "@mui/material"
+import {
+  Grid,
+  Typography,
+  useTheme as useMuiTheme,
+  useMediaQuery,
+} from "@mui/material"
 import "pollen-css"
 import "katex/dist/katex.min.css"
 import Latex from "react-latex-next"
@@ -64,8 +69,8 @@ const Index = () => {
     /\/blog\//.test(post.node.fileAbsolutePath)
   )
 
-  const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"))
+  const muiTheme = useMuiTheme()
+  const isMobile = useMediaQuery(muiTheme.breakpoints.down("sm"))
 
   return (
     <PageContainer>

@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import BlurHashImage from "../components/style/BlurHashImage"
 import { MDXProvider } from "@mdx-js/react"
 import { MDXRenderer } from "gatsby-plugin-mdx"
-import styled from "styled-components"
+import styled from "@emotion/styled"
 import {
   MDXThemeProvider,
   MDXProviderComponents,
@@ -54,7 +54,7 @@ const PostTemplate = ({ data }) => {
           <BlurHashImage
             gatsbyImageData={img}
             blurHash={image.childImageSharp.blurHash}
-            alt="Blog Post"
+            alt={`${title} project image`}
           />
         </Section>
         <ProjectOverview>

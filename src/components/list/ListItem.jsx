@@ -1,26 +1,13 @@
 import React from "react"
-import styled from "styled-components"
-import { Typography, styled as muiStyled } from "@mui/material"
+import { Typography } from "@mui/material"
 import BlurHashImage from "../style/BlurHashImage"
 
-import { StyledTitleLink, CodePrefix } from "../style/PageStyle"
-
-const StyledItemWrapper = styled.div`
-  transition-duration: 0.3s;
-  margin: var(--size-8) 0px;
-`
-
-const ItemWrapper = styled.div`
-  :hover {
-    ${StyledItemWrapper} {
-      transform: scale(1.025);
-    }
-
-    ${CodePrefix} {
-      text-decoration: underline;
-    }
-  }
-`
+import {
+  StyledTitleLink,
+  CodePrefix,
+  StyledItemWrapper,
+  ItemWrapper,
+} from "../style/PageStyle"
 
 const ListItem = ({ gatsbyImageData, blurHash, slug, title, excerpt }) => {
   const prefix = slug.match(/^\w+/)

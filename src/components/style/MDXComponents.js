@@ -1,12 +1,12 @@
 import React from "react"
 import {
   Typography,
-  ThemeProvider,
-  createTheme,
+  ThemeProvider as MuiThemeProvider,
+  createTheme as muiCreateTheme,
   responsiveFontSizes,
 } from "@mui/material"
 
-let theme = createTheme({
+let muiTheme = muiCreateTheme({
   components: {
     MuiTypography: {
       styleOverrides: {
@@ -52,10 +52,10 @@ let theme = createTheme({
   },
 })
 
-theme = responsiveFontSizes(theme)
+muiTheme = responsiveFontSizes(muiTheme)
 
 export const MDXThemeProvider = ({ children }) => {
-  return <ThemeProvider theme={theme}>{children}</ThemeProvider>
+  return <MuiThemeProvider theme={muiTheme}>{children}</MuiThemeProvider>
 }
 
 export const MDXProviderComponents = {

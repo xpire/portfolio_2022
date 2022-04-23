@@ -18,7 +18,7 @@ import { defineCustomElements as deckDeckGoHighlightElement } from "@deckdeckgo/
 
 const PostTemplate = ({ data }) => {
   deckDeckGoHighlightElement()
-  const { title, date, author, image } = data.mdx.frontmatter
+  const { title, date, image } = data.mdx.frontmatter
   const { body } = data.mdx
   const img = image.childImageSharp.gatsbyImageData
   console.log({ date })
@@ -40,7 +40,7 @@ const PostTemplate = ({ data }) => {
           <BlurHashImage
             gatsbyImageData={img}
             blurHash={image.childImageSharp.blurHash}
-            alt="Blog Post"
+            alt={`${title} blog image`}
           />
         </Section>
         <MDXThemeProvider>

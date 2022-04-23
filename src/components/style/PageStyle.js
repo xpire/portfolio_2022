@@ -1,9 +1,9 @@
 import React from "react"
-import styled from "styled-components"
+import styled from "@emotion/styled/macro"
 import { Link } from "gatsby"
 import {
-  ThemeProvider,
-  createTheme,
+  ThemeProvider as MuiThemeProvider,
+  createTheme as muiCreateTheme,
   responsiveFontSizes,
   Typography,
   Grid,
@@ -13,12 +13,12 @@ import {
 } from "@mui/material"
 import "pollen-css"
 
-const theme = createTheme({})
+const muiTheme = muiCreateTheme({})
 
-const responsiveTheme = responsiveFontSizes(theme, { factor: 2 })
+const responsiveTheme = responsiveFontSizes(muiTheme, { factor: 2 })
 
 export const PageThemeProvider = ({ children }) => {
-  return <ThemeProvider theme={responsiveTheme}>{children}</ThemeProvider>
+  return <MuiThemeProvider theme={responsiveTheme}>{children}</MuiThemeProvider>
 }
 
 export const PageContainer = ({ children }) => (
@@ -48,6 +48,23 @@ export const StyledTitleLink = styled(Link)`
 export const CodePrefix = styled.code`
   transition-duration: 0.3s;
   color: var(--color-grey-500);
+`
+
+export const StyledItemWrapper = styled.div`
+  transition-duration: 0.3s;
+  margin: var(--size-8) 0px;
+`
+
+export const ItemWrapper = styled.div`
+  :hover {
+    ${StyledItemWrapper} {
+      transform: scale(1.025);
+    }
+
+    ${CodePrefix} {
+      text-decoration: underline;
+    }
+  }
 `
 
 export const StyledLink = muiStyled(muiLink)`
@@ -82,12 +99,13 @@ export const Header = () => (
     //   },
     // }}
   >
-    <Grid container>
+    <Grid container justifyContent="space-between">
       <Grid item>
         <StyledTitleLink to="/">
           <Typography variant="h5">JO</Typography>
         </StyledTitleLink>
       </Grid>
+      <Grid item></Grid>
     </Grid>
   </StyledHeader>
 )
