@@ -1,13 +1,32 @@
 import React from "react"
-import { Typography } from "@mui/material"
 import BlurHashImage from "../style/BlurHashImage"
+import styled from "@emotion/styled/macro"
+import { Link } from "gatsby"
+import { Box, Themed } from "theme-ui"
 
-import {
-  StyledTitleLink,
-  CodePrefix,
-  StyledItemWrapper,
-  ItemWrapper,
-} from "../style/PageStyle"
+export const StyledTitleLink = styled(Link)`
+  text-decoration: none;
+`
+
+export const CodePrefix = styled(Themed.code)`
+  transition-duration: 0.3s;
+`
+
+export const StyledItemWrapper = styled(Box)`
+  transition-duration: 0.3s;
+  margin: var(--size-8) 0px;
+`
+
+export const ItemWrapper = styled(Box)`
+  :hover {
+    ${StyledItemWrapper} {
+      transform: scale(1.025);
+    }
+    ${CodePrefix} {
+      text-decoration: underline;
+    }
+  }
+`
 
 const ListItem = ({ gatsbyImageData, blurHash, slug, title, excerpt }) => {
   const prefix = slug.match(/^\w+/)
@@ -30,12 +49,12 @@ const ListItem = ({ gatsbyImageData, blurHash, slug, title, excerpt }) => {
             alt={`${title} image`}
           />
         </StyledItemWrapper>
-        <Typography>
-          <CodePrefix>{`/${prefix}`}</CodePrefix>
-        </Typography>
-        <Typography variant="h4">{title}</Typography>
+        <CodePrefix
+          sx={{ color: "muted", fontFamily: "monospace" }}
+        >{`/${prefix}`}</CodePrefix>
+        <Themed.h4 sx={{ m: 0 }}>{title}</Themed.h4>
       </StyledTitleLink>
-      <Typography variant="body1">{excerpt}</Typography>
+      <Themed.p>{excerpt}</Themed.p>
     </ItemWrapper>
   )
 }

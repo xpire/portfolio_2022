@@ -50,5 +50,19 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: "gatsby-plugin-theme-ui",
+      options: {
+        prismPreset: "night-owl",
+        // preset: '@theme-ui/preset-funk',
+      },
+    },
+    {
+      resolve: "gatsby-theme-style-guide",
+      options: {
+        // sets path for generated page
+        basePath: "/design-system",
+      },
+    },
   ],
 }
