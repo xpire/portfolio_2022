@@ -64,5 +64,11 @@ module.exports = {
         basePath: "/design-system",
       },
     },
+    {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve(`./src/components/layout/Layout.tsx`),
+      },
+    },
   ],
 }

@@ -5,6 +5,9 @@ import { MDXProvider } from "@mdx-js/react"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import PropTypes from "prop-types"
 import { defineCustomElements as deckDeckGoHighlightElement } from "@deckdeckgo/highlight-code/dist/loader"
+import { Themed, ThemeProvider } from "theme-ui"
+
+import MDXTheme from "../components/style/MDXTheme"
 
 const PostTemplate = ({ data }) => {
   deckDeckGoHighlightElement()
@@ -13,17 +16,19 @@ const PostTemplate = ({ data }) => {
   const img = image.childImageSharp.gatsbyImageData
   return (
     <>
-      <>{date}</>
-      <code>/blog</code>
-      <>{title}</>
+      <Themed.h6 sx={{ fontWeight: "light", m: 0 }}>{date}</Themed.h6>
+      <Themed.h4 sx={{ color: "muted", m: 0 }}>
+        <Themed.code>/blog</Themed.code>
+      </Themed.h4>
+      <Themed.h2 sx={{ mt: 0 }}>{title}</Themed.h2>
       <BlurHashImage
         gatsbyImageData={img}
         blurHash={image.childImageSharp.blurHash}
         alt={`${title} blog image`}
       />
-      <MDXProvider>
+      <ThemeProvider theme={MDXTheme}>
         <MDXRenderer>{body}</MDXRenderer>
-      </MDXProvider>
+      </ThemeProvider>
     </>
   )
 }

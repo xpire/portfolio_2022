@@ -3,7 +3,7 @@ import { Theme } from 'theme-ui'
 import metrics from './metrics'
 import fonts from './fonts'
 
-const headingStyles = {
+export const headingStyles = {
   color: "text",
   fontFamily: "heading",
   lineHeight: "heading",
