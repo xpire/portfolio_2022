@@ -1,22 +1,13 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import {
-  Grid,
-  Typography,
-  useTheme as useMuiTheme,
-  useMediaQuery,
-} from "@mui/material"
 import "pollen-css"
 import "katex/dist/katex.min.css"
 import Latex from "react-latex-next"
+import { Grid, Themed, Box } from "theme-ui"
+import { motion } from "framer-motion"
 
-import {
-  Section,
-  PageContainer,
-  StyledLink,
-  ExternalLink,
-} from "../components/style/PageStyle"
-import ListItem from "../components/list/ListItem"
+import ListItem from "../components/common/ListItem"
+import { Section } from "../components/common/Common"
 import MigurdiaImage from "../images/Migurdia"
 import OptiverLogo from "../images/Optiver"
 import MLCLogo from "../images/MLC"
@@ -68,172 +59,131 @@ const Index = () => {
   const blogs = posts.filter((post) =>
     /\/blog\//.test(post.node.fileAbsolutePath)
   )
-
-  const muiTheme = useMuiTheme()
-  const isMobile = useMediaQuery(muiTheme.breakpoints.down("sm"))
-
   return (
-    <PageContainer>
-      <Section>
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={4}>
-            <MigurdiaImage />
-          </Grid>
-          <Grid
-            item
-            cd={12}
-            md={8}
-            container
-            direction="column"
-            justifyContent="center"
-          >
-            <Grid item>
-              <Typography variant="h4">Hey there, my name is</Typography>
-              <Typography variant="h1">Justin Or.</Typography>
-              <Typography variant="h5">
-                I'm a Software Engineer passionate about <code>algorithms</code>
-                , <Latex>$maths$</Latex> and everything in between.
-              </Typography>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Section>
-      <Section>
-        <Typography variant="h3" gutterBottom>
-          About me
-        </Typography>
+    <>
+      <HeroSection />
+      <AboutSection />
+      <ProjectSection projects={projects} />
+      <BlogSection blogs={blogs} />
+    </>
+  )
+}
 
-        {/* <Grid container direction="row">
-          <Grid item xs={8} sm={6}>
-            <Typography gutterBottom>
-              As a 2021 UNSW Graduate in Mathematics and Computer Science, I
-              enjoy solving problems at the intersection of maths and
-              programming.
-            </Typography>
-          </Grid>
-        </Grid> */}
-        <Grid container spacing={3}>
-          <Grid
-            item
-            container
-            spacing={6}
-            direction="row"
-            justifyContent="flex-start"
-            alignItems="center"
+const HeroSection = () => {
+  return (
+    <Section>
+      <Grid columns={[1, null, 2]}>
+        <Box>
+          <MigurdiaImage fill={"var(--theme-ui-colors-text)"} />
+        </Box>
+        <Box>
+          <motion.div
+            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: -50 }}
+            transition={{ duration: 2 }}
           >
-            <Grid item xs={12} sm={6} order={{ xs: 2, sm: 1 }}>
-              <Typography gutterBottom>
-                Through my internship at MLC and NAB, I went from 0 experience
-                in frontend development to being the frontend developer for my
-                team's final year capstone project. I also picked up a plethora
-                Dev Ops skills, from Docker and Kubernetes, to Jenkins and
-                TeamCity CI/CD pipelines.
-              </Typography>
-            </Grid>
-            <Grid
-              item
-              xs={12}
-              sm={6}
-              order={{ xs: 1, sm: 2 }}
-              container
-              direction="row"
-              justifyContent={isMobile ? "center" : "flex-start"}
+            <Themed.h4
+              sx={{
+                fontFamily: "heading",
+              }}
             >
-              <Grid item>
-                <StyledLink
-                  href="https://www.mlc.com.au"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <MLCLogo />
-                </StyledLink>
-              </Grid>
-            </Grid>
-          </Grid>
-          <Grid
-            item
-            container
-            spacing={3}
-            direction="row"
-            justifyContent="flex-end"
-          >
-            <Grid
-              item
-              xs={12}
-              sm={6}
-              container
-              direction="row-reverse"
-              justifyContent={isMobile ? "center" : "flex-start"}
+              Hey there, my name is
+            </Themed.h4>
+            <Themed.h1 sx={{ m: 0 }}>Justin Or.</Themed.h1>
+            <Themed.h5>
+              I'm a Software Engineer passionate about <code>algorithms</code>,{" "}
+              <Latex>$maths$</Latex> and everything in between.
+            </Themed.h5>
+          </motion.div>
+        </Box>
+      </Grid>
+    </Section>
+  )
+}
+
+const AboutSection = () => {
+  return (
+    <Section title="About Me">
+      <Grid columns={[1, null, 2]} gap={[3, null, 5]}>
+        <Box
+          sx={{
+            alignSelf: "center",
+            justifySelf: ["center", null, "flex-end"],
+          }}
+        >
+          <MLCLogo />
+        </Box>
+        <Box>
+          <Themed.p>
+            Through my internship at MLC and NAB, I went from 0 experience in
+            frontend development to being the frontend developer for my team's
+            final year capstone project. I also picked up a plethora Dev Ops
+            skills, from Docker and Kubernetes, to Jenkins and TeamCity CI/CD
+            pipelines.
+          </Themed.p>
+        </Box>
+        <Box
+          sx={{
+            gridColumn: [1, null, 2],
+            alignSelf: "center",
+            justifySelf: ["center", null, "flex-start"],
+          }}
+        >
+          <OptiverLogo />
+        </Box>
+        <Box sx={{ gridColumn: [1, null, 1], gridRow: [null, null, 2] }}>
+          I'm currently working as a Graduate Software Engineer at Optiver.
+          Coding C++ in a High Frequency Trading company has taught me a lot
+          about performance and latency in the most globally competitive
+          environments.
+        </Box>
+      </Grid>
+    </Section>
+  )
+}
+
+const ProjectSection = ({ projects }) => {
+  return (
+    <Section title="Projects">
+      <Themed.h5>Here are some of the things I've been working on.</Themed.h5>
+      <Grid columns={[1, null, 2]} gap={[3, null, 5]}>
+        {projects.map((post, index) => {
+          const featuredPost = index === 0 && projects.length % 2 === 1
+          const gridcol = index % 2 === 1 ? 1 : 2
+          return (
+            <Box
+              sx={{
+                gridColumn: [1, null, featuredPost ? "1 / 3" : gridcol],
+              }}
+              key={`project/${post.node.slug}`}
             >
-              <Grid item>
-                <StyledLink
-                  href="https://www.optiver.com"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <OptiverLogo />
-                </StyledLink>
-              </Grid>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Typography variant="body1" gutterBottom>
-                I'm currently working as a Graduate Software Engineer at
-                Optiver. Coding C++ in a High Frequency Trading company has
-                taught me a lot about performance and latency in the most
-                globally competitive environments.
-              </Typography>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Section>
-      <Section>
-        <Typography variant="h3" gutterBottom>
-          Projects
-        </Typography>
-        <Typography variant="h6" gutterBottom>
-          Here are some of the things I've been working on.
-        </Typography>
-        <Grid container spacing={8}>
-          {projects.map((post, index) => {
-            const featuredPost = index === 0 && projects.length % 2 === 1
-            return (
-              <>
-                {post.node.frontmatter.title && (
-                  <Grid
-                    item
-                    sm={12}
-                    md={featuredPost ? 12 : 6}
-                    key={`project/${post.node.slug}`}
-                  >
-                    <ListItem
-                      gatsbyImageData={
-                        post.node.frontmatter.image.childImageSharp
-                          .gatsbyImageData
-                      }
-                      blurHash={
-                        post.node.frontmatter.image.childImageSharp.blurHash
-                      }
-                      slug={`project/${post.node.slug}`}
-                      title={post.node.frontmatter.title}
-                      excerpt={post.node.excerpt}
-                    />
-                  </Grid>
-                )}
-              </>
-            )
-          })}
-        </Grid>
-      </Section>
-      <Section>
-        <Typography variant="h3" gutterBottom>
-          Blog
-        </Typography>
-        <Typography variant="h6" gutterBottom>
-          Here are some things I've found interesting and blogged about.
-        </Typography>
-        <Grid container spacing={8}>
-          {blogs.map((post) => (
-            <Grid item sm={12} md={6} key={`blog/${post.node.slug}`}>
+              <ListItem
+                gatsbyImageData={
+                  post.node.frontmatter.image.childImageSharp.gatsbyImageData
+                }
+                blurHash={post.node.frontmatter.image.childImageSharp.blurHash}
+                slug={`project/${post.node.slug}`}
+                title={post.node.frontmatter.title}
+                excerpt={post.node.excerpt}
+              />
+            </Box>
+          )
+        })}
+      </Grid>
+    </Section>
+  )
+}
+
+const BlogSection = ({ blogs }) => {
+  return (
+    <Section title="Blog">
+      <Themed.h5>
+        Here are some interesting things I've blogged about.
+      </Themed.h5>
+      <Grid columns={[1, null, 2]} gap={[3, null, 5]}>
+        {blogs.map((post) => {
+          return (
+            <Box key={`blog/${post.node.slug}`}>
               <ListItem
                 gatsbyImageData={
                   post.node.frontmatter.image.childImageSharp.gatsbyImageData
@@ -243,33 +193,11 @@ const Index = () => {
                 title={post.node.frontmatter.title}
                 excerpt={post.node.excerpt}
               />
-            </Grid>
-          ))}
-        </Grid>
-      </Section>
-      <Section>
-        <Typography variant="h3" gutterBottom>
-          Contact
-        </Typography>
-        <Typography variant="h5" gutterBottom>
-          Feel free to reach out if you're looking for a developer, want to
-          connect or have a question.
-        </Typography>
-        <ExternalLink href="mailto:me@justinor.dev" variant="h6" gutterBottom>
-          me@justinor.dev
-        </ExternalLink>
-        <ExternalLink href="https://github.com/xpire" variant="h6" gutterBottom>
-          github.com/xpire
-        </ExternalLink>
-        <ExternalLink
-          href="https://linkedin.com/in/justinor/"
-          variant="h6"
-          gutterBottom
-        >
-          linkedin.com/in/justinor/
-        </ExternalLink>
-      </Section>
-    </PageContainer>
+            </Box>
+          )
+        })}
+      </Grid>
+    </Section>
   )
 }
 

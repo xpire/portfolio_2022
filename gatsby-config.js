@@ -47,7 +47,30 @@ module.exports = {
           {
             resolve: `gatsby-remark-highlight-code`,
           },
+          {
+            resolve: `gatsby-remark-katex`,
+          },
         ],
+      },
+    },
+    {
+      resolve: "gatsby-plugin-theme-ui",
+      options: {
+        prismPreset: "night-owl",
+        // preset: '@theme-ui/preset-funk',
+      },
+    },
+    {
+      resolve: "gatsby-theme-style-guide",
+      options: {
+        // sets path for generated page
+        basePath: "/design-system",
+      },
+    },
+    {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve(`./src/components/layout/Layout.tsx`),
       },
     },
   ],

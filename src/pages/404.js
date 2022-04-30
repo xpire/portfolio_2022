@@ -1,13 +1,13 @@
 import React from "react"
-import { Link } from "gatsby"
+import MigurdiaImage from "../images/Migurdia"
+import { Themed } from "theme-ui"
 
 const Error = () => {
   return (
     <>
-      <h1>This page has disappeared</h1>
-      <Link className="btn" to="/">
-        Return Home
-      </Link>
+      <MigurdiaImage fill={"var(--theme-ui-colors-text)"} />
+      <Themed.h1>404</Themed.h1>
+      <Themed.h3>This page has disappeared...</Themed.h3>
     </>
   )
 }
