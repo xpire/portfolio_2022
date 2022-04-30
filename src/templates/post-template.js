@@ -88,7 +88,7 @@ export const query = graphql`
         live
         image {
           childImageSharp {
-            gatsbyImageData(layout: FULL_WIDTH, placeholder: NONE)
+            gatsbyImageData(layout: FULL_WIDTH, placeholder: NONE, quality: 100)
             blurHash(componentX: 3, componentY: 4, width: 32) {
               base64Image
               hash

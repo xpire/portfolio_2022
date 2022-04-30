@@ -41,9 +41,11 @@
     "gatsby-plugin-theme-ui": "^0.14.4",
     "gatsby-remark-highlight-code": "^3.2.0",
     "gatsby-remark-images": "^6.0.0",
+    "gatsby-remark-katex": "^6.12.1",
     "gatsby-source-filesystem": "^4.0.0",
     "gatsby-theme-style-guide": "^0.14.4",
     "gatsby-transformer-sharp": "^4.0.0",
+    "katex": "^0.15.3",
     "normalize.css": "^8.0.1",
     "pollen-css": "^4.3.0",
     "prop-types": "^15.7.2",
@@ -54,7 +56,8 @@
     "react-intersection-observer": "^8.32.1",
     "react-latex-next": "^2.1.0",
     "theme-ui": "^0.14.2",
-    "typeface-heebo": "^1.1.13"
+    "typeface-heebo": "^1.1.13",
+    "usehooks-ts": "^2.5.1"
   },
   "devDependencies": {
     "@netlify/plugin-gatsby": "^1.0.3",

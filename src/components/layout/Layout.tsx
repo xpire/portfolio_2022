@@ -1,30 +1,38 @@
 import React from 'react'
-import { ThemeProvider, Flex, IconButton, Heading, Themed, useColorMode, Container, Close } from 'theme-ui'
+import { ThemeProvider, Flex, IconButton, Heading, Themed, useColorMode, Container } from 'theme-ui'
 import { navigate } from 'gatsby'
 import { useLocation } from '@reach/router';
+import { defineCustomElements as deckDeckGoHighlightElement } from "@deckdeckgo/highlight-code/dist/loader"
 
 import theme from '../style/Theme'
+import { Section, ExternalLink } from '../common/Common';
 import { SunIcon } from '../../images/sun'
 import { MoonIcon } from '../../images/moon'
 
-export const Header = () => {
+const ThemeToggle = () => {
     const [mode, setMode] = useColorMode()
+    return (
+        <IconButton
+            onClick={() => setMode(mode === "light" ? "dark" : "light")}
+            sx={{
+                height: "icon",
+                width: "icon",
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+            }}
+        >
+            <Heading sx={{ fontSize: 6, m: 0, pb: 2 }}>J</Heading>
+            {mode === "light" ? <SunIcon /> : <MoonIcon />}
+        </IconButton>
+    )
+}
+
+export const Header = () => {
     const { pathname } = useLocation()
     return (
         <Flex as="header" sx={{ pl: 1, pr: 1, pt: 4, justifyContent: "space-between", flexDirection: "row-reverse" }}>
-            <IconButton
-                onClick={() => setMode(mode === "light" ? "dark" : "light")}
-                sx={{
-                    height: "icon",
-                    width: "icon",
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                }}
-            >
-                <Heading sx={{ fontSize: 6, m: 0, pb: 2 }}>J</Heading>
-                {mode === "light" ? <SunIcon /> : <MoonIcon />}
-            </IconButton>
+            <ThemeToggle />
             {pathname !== "/" && (
                 <IconButton onClick={() => navigate("/")} sx={{ height: "icon", width: "icon", display: "flex", justifyContent: "flex-start" }}  >
                     <svg viewBox="0 0 1000 1000" height="32x" width="32px">
@@ -37,14 +45,40 @@ export const Header = () => {
     )
 }
 
-const Layout = ({ children }) => (
-    <ThemeProvider theme={theme}>
-        <Container variant='huge'>
-            <Header />
-            {children}
-        </Container>
-    </ThemeProvider>
+const Layout = ({ children }) => {
+    deckDeckGoHighlightElement()
+    return (
+        <ThemeProvider theme={theme}>
+            <Container variant='huge'>
+                <Header />
+                {children}
+                <Section title="Contact">
+                    <Themed.h5>
+                        Feel free to reach out if you're looking for a software developer,
+                        want to connect or have a question.
+                    </Themed.h5>
+                    <ExternalLink href="mailto:me@justinor.dev">
+                        me@justinor.dev
+                    </ExternalLink>
 
-)
+                    <ExternalLink href="https://github.com/xpire">
+                        github/xpire
+                    </ExternalLink>
+
+                    <ExternalLink href="https://www.linkedin.com/in/justinor">
+                        linkedin/in/justinor
+                    </ExternalLink>
+                </Section>
+                <Section>
+                    <Themed.h5 sx={{ fontWeight: "light", textTransform: "uppercase" }}>
+                        © Justin Or | Made with Gatsby, Theme-ui and MDX.
+                    </Themed.h5>
+                    <Header />
+                </Section>
+            </Container>
+        </ThemeProvider>
+
+    )
+}
 
 export default Layout

@@ -11,7 +11,7 @@ const metrics: Theme = {
     256,
     512],
   sizes: {
-    icon: 64,
+    icon: 72,
     default: 750,
     mini: 570,
     small: 650,

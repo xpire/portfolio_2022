@@ -4,13 +4,13 @@ import BlurHashImage from "../components/style/BlurHashImage"
 import { MDXProvider } from "@mdx-js/react"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import PropTypes from "prop-types"
-import { defineCustomElements as deckDeckGoHighlightElement } from "@deckdeckgo/highlight-code/dist/loader"
 import { Themed, ThemeProvider } from "theme-ui"
 
 import MDXTheme from "../components/style/MDXTheme"
 
+import "katex/dist/katex.min.css"
+
 const PostTemplate = ({ data }) => {
-  deckDeckGoHighlightElement()
   const { title, date, image } = data.mdx.frontmatter
   const { body } = data.mdx
   const img = image.childImageSharp.gatsbyImageData
@@ -27,7 +27,9 @@ const PostTemplate = ({ data }) => {
         alt={`${title} blog image`}
       />
       <ThemeProvider theme={MDXTheme}>
-        <MDXRenderer>{body}</MDXRenderer>
+        <MDXProvider>
+          <MDXRenderer>{body}</MDXRenderer>
+        </MDXProvider>
       </ThemeProvider>
     </>
   )
@@ -42,11 +44,7 @@ export const query = graphql`
         author
         image {
           childImageSharp {
-            gatsbyImageData(
-              layout: FULL_WIDTH
-              placeholder: NONE
-              aspectRatio: 1.777
-            )
+            gatsbyImageData(layout: FULL_WIDTH, placeholder: NONE)
             blurHash(componentX: 3, componentY: 4, width: 32) {
               base64Image
               hash
