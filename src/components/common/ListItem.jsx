@@ -14,7 +14,6 @@ export const CodePrefix = styled(Themed.code)`
 
 export const StyledItemWrapper = styled(Box)`
   transition-duration: 0.3s;
-  margin: var(--size-8) 0px;
 `
 
 export const ItemWrapper = styled(Box)`
@@ -28,22 +27,30 @@ export const ItemWrapper = styled(Box)`
   }
 `
 
+const StyledBlurHashImage = styled(BlurHashImage)`
+  position: relative;
+  zindex: 0; // fix ios issue: https://stackoverflow.com/questions/66835241/gatsby-image-plugin-not-displaying-properly-on-ios-devices
+`
+
 const ListItem = ({ gatsbyImageData, blurHash, slug, title, excerpt }) => {
   const prefix = slug.match(/^\w+/)
   return (
     <ItemWrapper>
       <StyledTitleLink to={slug}>
-        <StyledItemWrapper>
-          <BlurHashImage
+        <StyledItemWrapper
+          sx={{
+            mt: 4,
+            mb: 4,
+          }}
+        >
+          <StyledBlurHashImage
             gatsbyImageData={gatsbyImageData}
             blurHash={blurHash}
             imgStyle={{
               borderRadius: "inherit",
             }}
-            style={{
-              borderRadius: "var(--radius-xl)",
-              position: "relative",
-              zIndex: 0, // fix ios issue: https://stackoverflow.com/questions/66835241/gatsby-image-plugin-not-displaying-properly-on-ios-devices
+            sx={{
+              borderRadius: "large",
             }}
             loading="eager"
             alt={`${title} image`}

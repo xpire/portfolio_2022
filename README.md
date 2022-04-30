@@ -4,8 +4,7 @@ Built by using:
 
 - React
 - Gatsby (MDX from [bagseye](https://github.com/bagseye/koop-blog))
+- theme-ui
 - emotion
-- Mui
 - Framer motion
-- Pollen-css
 - BlurHash

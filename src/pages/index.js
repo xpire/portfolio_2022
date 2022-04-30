@@ -1,6 +1,5 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import "pollen-css"
 import "katex/dist/katex.min.css"
 import Latex from "react-latex-next"
 import { Grid, Themed, Box } from "theme-ui"
