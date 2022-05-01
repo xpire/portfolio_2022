@@ -4,6 +4,7 @@ import "katex/dist/katex.min.css"
 import Latex from "react-latex-next"
 import { Grid, Themed, Box } from "theme-ui"
 import { motion } from "framer-motion"
+import { useInView } from "react-intersection-observer"
 
 import ListItem from "../components/common/ListItem"
 import { Section } from "../components/common/Common"
@@ -68,31 +69,63 @@ const Index = () => {
   )
 }
 
+const boxVariants = {
+  initial: {},
+  animate: {
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+}
+
+const textVariants = {
+  initial: {
+    opacity: 0,
+    y: -50,
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 2 },
+  },
+}
+
 const HeroSection = () => {
+  const { ref, inView } = useInView({
+    /* Optional options */
+    threshold: 1,
+    initialInView: true,
+  })
   return (
     <Section>
       <Grid columns={[1, null, 2]}>
-        <Box>
-          <MigurdiaImage fill={"var(--theme-ui-colors-text)"} />
+        <Box ref={ref}>
+          <MigurdiaImage fill={"var(--theme-ui-colors-text)"} inView={inView} />
         </Box>
         <Box>
           <motion.div
-            animate={{ opacity: 1, y: 0 }}
-            initial={{ opacity: 0, y: -50 }}
-            transition={{ duration: 2 }}
+            variants={boxVariants}
+            initial="initial"
+            animate="animate"
           >
-            <Themed.h4
-              sx={{
-                fontFamily: "heading",
-              }}
-            >
-              Hey there, my name is
-            </Themed.h4>
-            <Themed.h1 sx={{ m: 0 }}>Justin Or.</Themed.h1>
-            <Themed.h5>
-              I'm a Software Engineer passionate about <code>algorithms</code>,{" "}
-              <Latex>$maths$</Latex> and everything in between.
-            </Themed.h5>
+            <motion.div variants={textVariants}>
+              <Themed.h4
+                sx={{
+                  fontFamily: "heading",
+                }}
+              >
+                Hey there, my name is
+              </Themed.h4>
+            </motion.div>
+            <motion.div variants={textVariants}>
+              <Themed.h1 sx={{ m: 0 }}>Justin Or.</Themed.h1>
+            </motion.div>
+            <motion.div variants={textVariants}>
+              <Themed.h5>
+                I'm a Software Engineer passionate about <code>algorithms</code>
+                , <Latex>$maths$</Latex> and everything in between.
+              </Themed.h5>
+            </motion.div>
           </motion.div>
         </Box>
       </Grid>

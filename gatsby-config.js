@@ -16,7 +16,6 @@ module.exports = {
     siteAuthorUrl: `https://justinor.dev`,
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-image`,
     `@gvrs/gatsby-transformer-blurhash`,
