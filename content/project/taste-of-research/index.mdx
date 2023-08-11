@@ -1,0 +1,25 @@
+---
+title: Automatically detecting silences in speech
+slug: tor
+image: ./images/tor.png
+date: 2020-03-10
+author: Justin
+type: Solo Project
+stack: ["Python", "Jupyter-Notebook", "Signal-Processing"]
+code: https://github.com/xpire/SilenceDetection
+live: https://github.com/xpire/SilenceDetection
+---
+
+In this project, I was tasked with cleaning hundreds of spoken
+excerpts of Dementia Patients' speech data.
+
+The structure of the recordings was a sequence of words spoken with
+large gaps between each word, with the occasional remark from the
+interviewer. For such a seemingly simplistic problem, many existing
+silence detecting solutions I tried did not work. Hence, I decided to
+build my own, and also explore how silence detection works.
+
+I used the python package `librosa` to conduct the audio
+analysis. Through my experimentations with this Jupyter Notebook, I
+fixed DC offsets and used the RMS of the audio signal to calculate
+when noise occured to detect the silences.

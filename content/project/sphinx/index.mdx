@@ -1,0 +1,40 @@
+---
+title: Implementation of Sphinx Password Store Protocol
+slug: sphinx
+image: ./images/sphinx.png
+date: 2020-03-10
+author: Justin
+type: Solo Project
+stack: ["Python", "typescript, "web-extension", "security"]
+code: https://github.com/xpire/somethingAwesomeSphinx
+live: https://www.youtube.com/embed/jta72Zj-l14
+---
+
+In this project, I built a full-stack implementation of a password
+manager referenced by the sphinx white paper, based on Elliptic Curve
+Cryptography.
+
+Sphinx stands for "a password Store that Perfectly Hides from Itself
+(No eXaggeration!)". It is a novel implementation of a password store
+which
+> remains secure even when the password manager itself has been compromised.
+
+Sphinx relies on device-enhanced password authenticated key exchange,
+by storing part of the password on an external device, such that an
+attacker breaking into this device learns no information about the
+master password or the user’s individual passwords.
+
+I created an Interactive Python Jupyter Notebook containing my
+implementation of core algorithms: Octet String to Integer Primitives,
+HashToBase function, Simple SWU Hashing algorithm, Oblivious
+Pseudo-Random Function and an API flask server for backend.
+
+I also completed a mathematically complete implementation of the above
+functions in JavaScript with sjcl.js for front-end cryptographic
+capability and a fully featured React.js front-end chrome extension
+providing full user experience for MVP.
+
+A live demo of the chrome extension can be found in the live section.
+
+An explanation of the math can be found here: https://blog.justinor.dev/jupyter/security/sphinx/somethingawesome/2021/05/06/sphinx-algorithm-overview.html
+
