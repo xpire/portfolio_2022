@@ -23,7 +23,7 @@ exports.createPages = async ({ actions, graphql }) => {
   posts.forEach(({ node }) => {
     // const { slug } = node.frontmatter;
     const slug = node.slug;
-    const isBlogRegex = new RegExp(`${__dirname}/content/blog`);
+    const isBlogRegex = new RegExp("blog");
     const isBlog = isBlogRegex.test(node.fileAbsolutePath);
     createPage({
       path: `${isBlog ? "blog" : "project"}/${slug}`,

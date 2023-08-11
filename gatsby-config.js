@@ -46,9 +46,9 @@ module.exports = {
           {
             resolve: `gatsby-remark-highlight-code`,
           },
-          {
-            resolve: `gatsby-remark-katex`,
-          },
+          // {
+          //   resolve: `gatsby-remark-katex`,
+          // },
         ],
       },
     },

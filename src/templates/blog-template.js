@@ -8,8 +8,6 @@ import { Themed, ThemeProvider } from "theme-ui"
 
 import MDXTheme from "../components/style/MDXTheme"
 
-import "katex/dist/katex.min.css"
-
 const PostTemplate = ({ data }) => {
   const { title, date, image } = data.mdx.frontmatter
   const { body } = data.mdx

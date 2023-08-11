@@ -1,6 +1,5 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import "katex/dist/katex.min.css"
 import Latex from "react-latex-next"
 import { Grid, Themed, Box } from "theme-ui"
 import { motion } from "framer-motion"
@@ -180,7 +179,7 @@ const ProjectSection = ({ projects }) => {
       <Themed.h5>Here are some of the things I've been working on.</Themed.h5>
       <Grid columns={[1, null, 2]} gap={[3, null, 5]}>
         {projects.map((post, index) => {
-          const featuredPost = index === 0 && projects.length % 2 === 1
+          const featuredPost = index === 0
           const gridcol = index % 2 === 1 ? 1 : 2
           return (
             <Box
